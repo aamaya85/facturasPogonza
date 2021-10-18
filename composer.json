@@ -1,0 +1,12 @@
+{
+    "require": {
+        "legomolina/simple-orm": "dev-master",
+        "pecee/simple-router": "^4.3",
+        "league/plates": "^3.4"
+    },
+    "autoload": {
+        "psr-4": {
+        	"App\\": "src/lib"
+        }
+    }
+}
