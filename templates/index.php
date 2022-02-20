@@ -1,6 +1,6 @@
 <?php
   
- if ($_SERVER['SERVER_PORT'] == 80) header('location: https://gorila-testing.tk/facturasApp');
+  if ($_SERVER['SERVER_PORT'] == 80) header('location: https://pogonza.tk/facturasApp');
  
 ?>
 
