@@ -1,5 +1,7 @@
 $(document).ready(function() {
 
+  const baseURL = 'http://www.pogonza.tk';
+
   // Esta variable es para iniciar la tabla agrupada colapsada
   var collapsedGroups = {};
 
@@ -54,12 +56,8 @@ $(document).ready(function() {
   });
 
   // FUNCTIONS
-  viewPayments = function(payments){
-    console.log(payments);
-  }
-
   setPayment = function(id, cliente, nroFactura){
-    console.log(id, cliente, nroFactura)
+
     $('#formModal').modal('show');
 
     // Set Labels
@@ -110,7 +108,7 @@ $(document).ready(function() {
 
     if (confirm("Seguro que querés borrar la factura?")) {
       
-      const URL = 'http://gorila-testing.tk/facturasApp/api/deleteInvoice';
+      const URL = baseURL + '/facturasApp/api/deleteInvoice';
       
       $.post(URL, { id_factura: idFactura }, function(response){
         if (response == true){
@@ -144,7 +142,7 @@ $(document).ready(function() {
         observaciones: values.observaciones
       }
 
-      const URL = 'http://gorila-testing.tk/facturasApp/api/confirmPayment';
+      const URL = baseURL + '/facturasApp/api/confirmPayment';
       
       $.post(URL, data, function(response){
         console.log('data: ', data);
