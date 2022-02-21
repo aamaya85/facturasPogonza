@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-  const baseURL = 'http://www.pogonza.tk';
+  const baseURL = 'https://pogonza.tk'
 
   // Esta variable es para iniciar la tabla agrupada colapsada
   var collapsedGroups = {};

@@ -114,7 +114,7 @@
 
     public function confirmPayment(){
       $data = input()->all();
-      
+
       $insert = array(
         "id_factura" => $data['id_factura'],
         "fecha_pago" => $data['fecha_pago'],
