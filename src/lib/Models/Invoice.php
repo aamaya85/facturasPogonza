@@ -1,13 +1,13 @@
 <?php
-	
-	namespace App\Models;
+  
+  namespace App\Models;
 
-	use \SimpleORM\Model;
+  use \SimpleORM\Model;
 
-	class Invoice extends Model {
+  class Invoice extends Model {
 
-		protected $id;
-		protected $nro_factura;
+    protected $id;
+    protected $nro_factura;
     protected $fecha;
     protected $nro_cliente;
     protected $cliente;
@@ -200,6 +200,6 @@
       $this->color = $color;
     }
 
-	}
+  }
 
 ?>
