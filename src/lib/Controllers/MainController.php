@@ -1,22 +1,22 @@
 <?php
-	
-	namespace App\Controllers;
+  
+  namespace App\Controllers;
 
-	use \App\Models\Invoice;
+  use \App\Models\Invoice;
   use \App\Models\Payment;
-	use \SimpleORM\Model;
-	use \League\Plates\Engine;
-	
-	class MainController {
+  use \SimpleORM\Model;
+  use \League\Plates\Engine;
+  
+  class MainController {
 
-		public function __construct(){
-			Model::config(parse_ini_file(CONFIG));
-		}
-		
-		public function getIndexData($page = 0){
-			
-			// Get all invoices
-			$query_invoices = Invoice::all()->execute();
+    public function __construct(){
+      Model::config(parse_ini_file(CONFIG));
+    }
+    
+    public function getIndexData($page = 0){
+      
+      // Get all invoices
+      $query_invoices = Invoice::all()->execute();
       
       // Get all payments
       $query_payments = Payment::all()->execute();
@@ -63,17 +63,17 @@
               
       }
      
-			// Render template
-			$template = new Engine(TEMPLATES_PATH);
-			return $template->render('index', [
+      // Render template
+      $template = new Engine(TEMPLATES_PATH);
+      return $template->render('index', [
           "invoices" => $arr_invoices,
           "page" => $page
         ]
-			);
+      );
 
-		}
+    }
 
-		public function getLastInvoice($tipo, $letra, $color){
+    public function getLastInvoice($tipo, $letra, $color){
       try {
         $result = Invoice::all()->where()->andFilter([
           ["tipo_factura", "=", strtoupper($tipo)],
@@ -84,33 +84,33 @@
         return "Hubo un error en la consulta";
       }
 
-		  return json_encode($result->nro_factura);
-		}
+      return json_encode($result->nro_factura);
+    }
 
-		public function saveInvoices(){
-			$invoices = json_decode(file_get_contents('php://input'));
-			foreach($invoices as $inv){
-				$new_invoice = array(
-					"nro_factura" => $inv->nro_factura,
-					"nro_cliente" => $inv->nro_cliente,
-					"cuit_factura" => $inv->cuit_factura,
-					"localidad" => $inv->localidad,
-					"fecha_factura" => $inv->fecha_factura,
-					"nom_factura" => $inv->nom_factura,
-					"desc_factura" => $inv->desc_factura,
-					"neto_factura" => $inv->neto_factura,
-					"iva_factura" => $inv->iva_factura,
-					"total_factura" => $inv->total_factura,
-					"venc_factura" => $inv->venc_factura,
+    public function saveInvoices(){
+      $invoices = json_decode(file_get_contents('php://input'));
+      foreach($invoices as $inv){
+        $new_invoice = array(
+          "nro_factura" => $inv->nro_factura,
+          "nro_cliente" => $inv->nro_cliente,
+          "cuit_factura" => $inv->cuit_factura,
+          "localidad" => $inv->localidad,
+          "fecha_factura" => $inv->fecha_factura,
+          "nom_factura" => $inv->nom_factura,
+          "desc_factura" => $inv->desc_factura,
+          "neto_factura" => $inv->neto_factura,
+          "iva_factura" => $inv->iva_factura,
+          "total_factura" => $inv->total_factura,
+          "venc_factura" => $inv->venc_factura,
           "tipo_factura" => $inv->tipo_factura,
           "letra_factura" => $inv->letra_factura,
           "color_factura" => $inv->color_factura
-				);
-				$result = Invoice::query()->insert($new_invoice)->execute();
+        );
+        $result = Invoice::query()->insert($new_invoice)->execute();
 
-			}
-			return "  @@ DATOS REGISTRADOS\n\n";
-		}
+      }
+      return "  @@ DATOS REGISTRADOS\n\n";
+    }
 
     public function confirmPayment(){
       $data = input()->all();
@@ -143,6 +143,6 @@
       }
     }
 
-	}
+  }
 
 ?>
